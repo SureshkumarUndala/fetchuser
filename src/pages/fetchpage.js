@@ -12,7 +12,7 @@ const Fetchpage = () => {
             .then((response) => response.json())
             .then((data) => {
                 //store userdata in users state
-                setusers(data.results)
+                setusers(data?.results)
                 //  make the loading state false, after fetching data ,
                 setloading(false)    
             })
@@ -25,7 +25,7 @@ const Fetchpage = () => {
                 <button onClick={clickHandler}>Get User</button>
             </span>
             {loading && <div className='loader'><h1>loading...</h1></div>}
-            {users.map((user, index) => (
+            {!loading &&  users?.map((user, index) => (
                 <div className='data-container'>
                     <ul key={index}>
                         <li><img src={user.picture.large} alt="image" /></li>
@@ -36,6 +36,7 @@ const Fetchpage = () => {
                 </div>
 
             ))}
+        
         </div>
     )
 }
