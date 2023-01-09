@@ -1,6 +1,7 @@
 body{
-    background-color: rgb(36, 218, 202);
-    text-align: center;
+    margin: 0;
+    padding: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
 
 }
 ul{
@@ -8,4 +9,44 @@ ul{
 }
 ul li{
     padding-bottom: 5px;
+}
+.userdata{
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    color: #ffffff;
+    background-color:#3545ee;
+    padding: 10px;
+    font-weight: bolder;
+    font-size: 20px;
+    border: 1px sold #3333;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    width: 150px;
+    border-radius: 8px;
+  
+
+}
+h2{
+    color: #ffffff;
+    display: inline;
+    margin-right: 20px;
+}
+.data-container{
+    background-color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    border-radius: 8px;
+    box-shadow: 10px 8px 0px 8px rgba(0, 0, 0, 0.219);
+    margin-top: 10px; 
+}
+.loader{
+    color:#3545ee
 }

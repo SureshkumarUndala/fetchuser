@@ -1,32 +1,42 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import axios from "axios"
+
 import "./fetchpage.css"
 const Fetchpage = () => {
     const [users, setusers] = useState([])
+    const [loading, setloading] = useState(false)
 
+    const clickHandler = () => {
+        setloading(true)
+        fetch("https://randomuser.me/api/")
+            .then((response) => response.json())
+            .then((data) => {
+                //store userdata in users state
+                setusers(data.results)
+                //  make the loading state false, after fetching data ,
+                setloading(false)    
+            })
 
-   
-    useEffect(()=>{
-        axios.get("https://randomuser.me/api/").then((res)=>setusers(res.data.results))
-    },[])
-
-    console.log(users)
-
-
-
-
-
+    }
     return (
         <div className='userdata'>
+            <span>
+                <h2>Random User Generator</h2>
+                <button onClick={clickHandler}>Get User</button>
+            </span>
+            {loading && <div className='loader'><h1>loading...</h1></div>}
             {users.map((user, index) => (
-                <ul  key={index}>
-                    <li><h2>Gender:{user.gender}</h2></li>
-                    <li><h2>Name: {user.name.first} {user.name.last}</h2></li>
-                    <li><h2>emil: {user.email}</h2></li>
-                    <li><h2><img src={user.picture.large} alt="image"/></h2></li>
-                </ul>))}
-    </div>
+                <div className='data-container'>
+                    <ul key={index}>
+                        <li><img src={user.picture.large} alt="image" /></li>
+                        <li><h5>Name: {user?.name.title} {user?.name.first} {user?.name.last}</h5></li>
+                        <li><h5>Gender: {user.gender}</h5></li>
+                        <li><h5>emil: {user.email}</h5></li>
+                    </ul>
+                </div>
+
+            ))}
+        </div>
     )
 }
 
